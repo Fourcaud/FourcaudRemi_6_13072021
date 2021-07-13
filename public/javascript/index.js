@@ -125,11 +125,11 @@ let app = new (function () {
       htmlTypes +=
         '<li><input  type="checkbox" class="check" id="' +
         uniqueTypes[i] +
-        '" name="header__tags[]" value="' +
+        '" name="header__tags" value="' +
         uniqueTypes[i] +
-        '"> <label for="' +
+        '"> <label class="labeltags" for="' +
         uniqueTypes[i] +
-        '">' +
+        '">#' +
         uniqueTypes[i] +
         "</label></li>";
     }
