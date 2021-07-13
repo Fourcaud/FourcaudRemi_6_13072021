@@ -1,24 +1,31 @@
 /**
- * Set up a decent box model on the root element
- */
-html {
-  box-sizing: border-box;
-}
-
-/**
- * Make all elements from the DOM inherit from the parent box-sizing
- * Since `*` has a specificity of 0, it does not override the `html` value
- * making all elements inheriting from the root box-sizing value
- * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
- */
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-/**
  * Basic typography style for copy text
  */
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.header__logo {
+  width: 200px;
+  height: 50px;
+}
+.header__h1 {
+  width: 306px;
+  height: 57px;
+}
+
+#header__tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style-type: none;
+}
+
+.check {
+  display: none;
+}
 
 /*# sourceMappingURL=style.css.map */
