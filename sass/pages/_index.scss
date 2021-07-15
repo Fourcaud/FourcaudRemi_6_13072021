@@ -1,3 +1,92 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
+.card {
+  width: 526px;
+  text-align: center;
+  margin-bottom: 30px;
+  &__portrait {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+  &__tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0.4em;
+  }
+
+  & h2 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 47px;
+    /* identical to box height */
+    text-align: center;
+    color: #d3573c;
+  }
+  & h3 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #901c1c;
+  }
+
+  & h4 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 13px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #000000;
+  }
+  & h5 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9px;
+    line-height: 12px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #757575;
+  }
+  & h6 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+
+    color: #911c1c;
+  }
+}
+.container {
+  &__card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}

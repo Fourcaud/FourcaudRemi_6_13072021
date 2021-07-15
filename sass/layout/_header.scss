@@ -14,6 +14,12 @@
   &__h1 {
     width: 306px;
     height: 57px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 47px;
+    color: #911c1c;
   }
 }
 #header__tags {
@@ -36,6 +42,11 @@
 
 .labeltags {
   margin: 10px;
-  border-radius: 10px;
-  border: black solid 1px;
+  border: 0.5px solid #c4c4c4;
+  box-sizing: border-box;
+  padding: 0 5px;
+  border-radius: 11px;
+}
+input:checked ~ label {
+  background-color: #d3583c4b;
 }

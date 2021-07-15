@@ -60,11 +60,12 @@ let photographers = [
     portrait: "MarcelNikolic.jpg",
   },
 ];
+
 let app = new (function () {
   // Récupération des données
   this.photographers = photographers;
 
-  // Affiche les films (tous par défaut)
+  // Affiche les photographes (tous par défaut)
   this.FetchAll = function (data) {
     // Selection de l'élément
     let elPhotographers = document.getElementById("photographers");
@@ -73,34 +74,41 @@ let app = new (function () {
 
     for (let i in data) {
       htmlPhotographers +=
-        '<article class="card mb-3"><div class="card-header">';
+        '<article class="card"><img class="card__portrait" src="photos/PhotographersIDPhotos/' +
+        data[i].portrait +
+        '" alt="' +
+        data[i].name +
+        '" />';
+
+      htmlPhotographers +=
+        '<div class="card__name"><h2>' + data[i].name + "</h2></div>";
+
+      htmlPhotographers +=
+        '<div class="card__country"><h3>' +
+        data[i].country +
+        ", " +
+        data[i].city +
+        "</h3></div>";
+
+      htmlPhotographers +=
+        '<div class="card__tagline"><h4>' + data[i].tagline + "</h4></div>";
+
+      htmlPhotographers +=
+        '<div class="card__price"><h5>' + data[i].price + "€/jour</h5></div>";
+
+      htmlPhotographers += '<div class="card__tags ">';
       for (let j in data[i].tags) {
         htmlPhotographers +=
-          '<i class="fa fa-tag" aria-hidden="true"></i> ' +
-          data[i].tags[j] +
-          " ";
+          '<h6 class="labeltags">#' + data[i].tags[j] + "</h6>";
       }
       htmlPhotographers += "</div>";
-      htmlPhotographers +=
-        '<div class="card-block"><h2>' + data[i].name + "</h2></div>";
-      htmlPhotographers +=
-        '<div class="card-footer text-muted text-center"> <i class="fa fa-calendar" aria-hidden="true"></i> ' +
-        data[i].price +
-        "</div>";
+
       htmlPhotographers += "</article>";
     }
 
     // Affichage de l'ensemble des lignes en HTML
     elPhotographers.innerHTML = htmlPhotographers;
-
-    // Affiche le nombre de films
-    this.Count(data);
   };
-
-  // Retourne le nombre de films
-  this.Count = (data) =>
-    (document.getElementById("count").innerHTML =
-      data.length + " photographers");
 
   // Retourne la liste des checkboxes
   this.DisplayFilters = function () {
@@ -108,9 +116,9 @@ let app = new (function () {
     let elTypes = document.getElementById("header__tags");
     let types = [];
 
-    // Chaque ligne (film)
+    // Chaque ligne (photographe)
     for (let i in photographers) {
-      // Chaque "type" dans chaque ligne (film)
+      // Chaque "type" dans chaque ligne (photographe)
       for (let j in photographers[i].tags) {
         types.push(photographers[i].tags[j]);
       }
@@ -127,9 +135,11 @@ let app = new (function () {
         uniqueTypes[i] +
         '" name="header__tags" value="' +
         uniqueTypes[i] +
-        '"> <label class="labeltags" for="' +
+        '"> <label class="labeltags ' +
         uniqueTypes[i] +
-        '">#' +
+        '" for="' +
+        uniqueTypes[i] +
+        '"> #' +
         uniqueTypes[i] +
         "</label></li>";
     }
@@ -137,9 +147,9 @@ let app = new (function () {
     elTypes.innerHTML = htmlTypes;
   };
 
-  // Retourne les films filtrés
+  // Retourne les photographes filtrés
   this.FilterByType = function () {
-    // Afiche les checkboxes
+    // Affiche les checkboxes
     this.DisplayFilters();
 
     let checkboxes = document.querySelectorAll("input");
@@ -150,11 +160,11 @@ let app = new (function () {
       checkbox.addEventListener("click", function () {
         if (checkbox.checked) {
           // Ajout dans le tableau de la valeur cochée
+
           arrType.push(checkbox.value);
         } else {
           // Suppression dans le tableau
           let removeItem = arrType.filter((e) => e !== checkbox.value);
-
           arrType = removeItem;
         }
 
