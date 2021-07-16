@@ -189,4 +189,12 @@ input:checked ~ label {
   justify-content: space-around;
 }
 
+.container__media {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
 /*# sourceMappingURL=style.css.map */

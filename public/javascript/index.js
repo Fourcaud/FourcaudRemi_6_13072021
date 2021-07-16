@@ -74,7 +74,9 @@ let app = new (function () {
 
     for (let i in data) {
       htmlPhotographers +=
-        '<article class="card"><img class="card__portrait" src="photos/PhotographersIDPhotos/' +
+        '<a href="pages/photographerPage.html?id=' +
+        data[i].id +
+        '"><article class="card"><img class="card__portrait" src="photos/PhotographersIDPhotos/' +
         data[i].portrait +
         '" alt="' +
         data[i].name +
@@ -103,7 +105,7 @@ let app = new (function () {
       }
       htmlPhotographers += "</div>";
 
-      htmlPhotographers += "</article>";
+      htmlPhotographers += "</article></a>";
     }
 
     // Affichage de l'ensemble des lignes en HTML
