@@ -5,7 +5,8 @@ function fetchData(callback) {
       callback(data.photographers, data.media);
     });
 }
-
+let totalDeLike = 0;
+let prixParJour = 0;
 let app = new (function () {
   // Récupération des données
 
@@ -39,7 +40,7 @@ let app = new (function () {
 
     htmlPhotographers +=
       '<div class="card__price"><h5>' + resultat.price + "€/jour</h5></div>";
-
+    prixParJour = resultat.price;
     htmlPhotographers += '<div class="card__tags ">';
     for (let j in resultat.tags) {
       htmlPhotographers +=
@@ -113,7 +114,7 @@ let appMedia = new (function () {
     for (let y in resultat) {
       if (resultat[y].image) {
         htmlMedia +=
-          '<article class="card"><img class="card__portrait" src="../photos/' +
+          '<article class="item"><img class="item__photo" src="../photos/' +
           resultat[y].photographerId +
           "/" +
           resultat[y].image +
@@ -122,28 +123,49 @@ let appMedia = new (function () {
           '" />';
       } else {
         htmlMedia +=
-          '<article class="card"><video autoplay class="card__portrait"> <source src="../photos/' +
+          '<article class="item"><video autoplay class="item__video"> <source src="../photos/' +
           resultat[y].photographerId +
           "/" +
           resultat[y].video +
           '"  type="video/mp4"  ></video>';
       }
       htmlMedia +=
-        '<div class="card__name"><h2>' + resultat[y].title + "</h2></div>";
-
-      htmlMedia +=
-        '<div class="card__tagline"><h3>' + resultat[y].likes + "</h3></div>";
-      htmlMedia += '<div class="card__tags ">';
-      for (let j in resultat[y].tags) {
-        htmlMedia += '<h6 class="labeltags">#' + resultat[y].tags[j] + "</h6>";
-      }
-      htmlMedia += "</div>";
+        '<div class="item__flex"><div class="item__name"><h2>' +
+        resultat[y].title +
+        "</h2></div>";
+      const nombreLike = parseInt(resultat[y].likes, 16);
+      htmlMedia += `<div class="item__tagline"><h3>${nombreLike}</h3> <i onclick="myFunction(this)" class="far fa-heart"></i></div>`;
+      totalDeLike += nombreLike;
+      htmlMedia += "</div></div>";
 
       htmlMedia += "</article>";
+
       elMedia.innerHTML = htmlMedia;
     }
   };
 })();
+function trieItemName() {
+  document.getElementsByClassName(".item").sort();
+}
+function myFunction(x) {
+  x.classList.toggle("fas");
+  if (x.classList.contains("fas")) {
+    x.previousElementSibling.innerHTML++;
+    totalDeLike++;
+    affichageTotalLike();
+  } else {
+    x.previousElementSibling.innerHTML--;
+    totalDeLike--;
+    affichageTotalLike();
+  }
+}
+function affichageTotalLike() {
+  let affichageLikePrix = document.getElementById("like-prix");
+  let htmlLikePrix = "";
+  htmlLikePrix += `<div>${totalDeLike}<i class="fas fa-heart"></i></div>`;
+  htmlLikePrix += `<div>${prixParJour}€/jour</div>`;
+  affichageLikePrix.innerHTML = htmlLikePrix;
+}
 
 // Affichage de tous les media
 fetchData((photographers, media) => {
@@ -151,4 +173,5 @@ fetchData((photographers, media) => {
   app.FetchAll(photographers);
   // Filtrage
   app.FilterByType();
+  affichageTotalLike();
 });

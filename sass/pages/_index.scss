@@ -11,6 +11,15 @@
     border-radius: 100px;
     object-fit: cover;
   }
+  &__name {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 47px;
+    text-align: center;
+    color: #d3573c;
+  }
   &__tags {
     display: flex;
     align-items: center;
@@ -89,4 +98,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
   }
+}
+.lien {
+  text-decoration: none;
 }
