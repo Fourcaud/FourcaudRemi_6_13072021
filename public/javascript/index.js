@@ -4,8 +4,7 @@ function fetchData(callback) {
     .then((data) => {
       callback(data.photographers);
     });
-}
-// Retourne la liste des checkboxes
+} // Retourne la liste des checkboxes
 function DisplayFilters(photographers) {
   // Selection de l'élément
   let elTypes = document.getElementById("header__tags");
@@ -41,7 +40,6 @@ function DisplayFilters(photographers) {
   }
   elTypes.innerHTML = htmlTypes;
 }
-
 function FetchAll(photographers) {
   // Selection de l'élément
 
@@ -92,7 +90,6 @@ function FetchAll(photographers) {
   // Affichage de l'ensemble des lignes en HTML
   elPhotographers.innerHTML = htmlPhotographers;
 }
-
 // Retourne les photographes filtrés
 function FilterByType(photographers) {
   // Affiche les checkboxes
@@ -136,7 +133,6 @@ function FilterByType(photographers) {
     });
   }
 }
-
 fetchData((photographers) => {
   DisplayFilters(photographers);
   FetchAll(photographers);
