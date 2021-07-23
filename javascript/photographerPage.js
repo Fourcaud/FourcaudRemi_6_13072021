@@ -1,3 +1,5 @@
+import { filterByName } from "./lightboxModal";
+
 function fetchData(callback) {
   fetch("http://127.0.0.1:5500/public/FishEyeData.json")
     .then((res) => res.json())
@@ -50,6 +52,7 @@ function fetchPhotographer(photographers) {
   // Affichage de l'ensemble des lignes en HTML
   elPhotographers.innerHTML = htmlPhotographers;
 }
+
 function fetchAllMedia(media) {
   // Selection de l'élément
   const PhotographersID = parseInt(
@@ -86,7 +89,7 @@ function fetchAllMedia(media) {
       resultat[y].title +
       "</h2></div>";
     const nombreLike = parseInt(resultat[y].likes, 16);
-    htmlMedia += `<div class="item__tagline"><h3>${nombreLike}</h3> <i onclick="myFunction(this)" class="far fa-heart"></i></div>`;
+    htmlMedia += `<div class="item__tagline"><h3>${nombreLike}</h3> <i id="${resultat[y].id}" onclick="myFunction(${y})" class="far fa-heart"></i></div>`;
     totalDeLike += nombreLike;
     htmlMedia += "</div></div>";
 
@@ -97,13 +100,15 @@ function fetchAllMedia(media) {
 }
 
 function myFunction(x) {
-  x.classList.toggle("fas");
-  if (x.classList.contains("fas")) {
-    x.previousElementSibling.innerHTML++;
+  const item = mediaDuPhotographe[x].id;
+  const coeurelem = document.getElementById(item.id);
+  coeurelem.classList.toggle("fas");
+  if (coeurelem.classList.contains("fas")) {
+    coeurelem.previousElementSibling.innerHTML++;
     totalDeLike++;
     affichageTotalLike();
   } else {
-    x.previousElementSibling.innerHTML--;
+    coeurelem.previousElementSibling.innerHTML--;
     totalDeLike--;
     affichageTotalLike();
   }
@@ -129,32 +134,23 @@ document
     e.preventDefault();
     e.stopPropagation();
 
-    FilterByLike(mediaDuPhotographe);
+    filterByLike(mediaDuPhotographe);
   });
 
 document.getElementById("dateTrie").addEventListener("click", function (e) {
   e.preventDefault();
   e.stopPropagation();
 
-  FilterByDate(mediaDuPhotographe);
+  filterByDate(mediaDuPhotographe);
 });
 document.getElementById("titreTrie").addEventListener("click", function (e) {
   e.preventDefault();
   e.stopPropagation();
 
-  FilterByName(mediaDuPhotographe);
+  filterByName(mediaDuPhotographe, fetchAllMedia);
 });
 
-function FilterByName(mediaDuPhotographe) {
-  // Affiche les checkboxes
-  let filteredTitle = [];
-  filteredTitle = mediaDuPhotographe;
-  filteredTitle.sort((a, b) => a.title.localeCompare(b.title));
-
-  fetchAllMedia(filteredTitle);
-}
-
-function FilterByLike(mediaDuPhotographe) {
+function filterByLike() {
   // Affiche les checkboxes
   let filteredLike = [];
   filteredLike = mediaDuPhotographe;
@@ -162,7 +158,7 @@ function FilterByLike(mediaDuPhotographe) {
 
   fetchAllMedia(filteredLike);
 }
-function FilterByDate(mediaDuPhotographe) {
+function filterByDate() {
   // Affiche les checkboxes
   let filteredDate = [];
   filteredDate = mediaDuPhotographe;

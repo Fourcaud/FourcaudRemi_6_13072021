@@ -101,7 +101,6 @@ function FilterByType(photographers) {
     checkbox.addEventListener("click", function () {
       if (checkbox.checked) {
         // Ajout dans le tableau de la valeur cochée
-
         arrType.push(checkbox.value);
       } else {
         // Suppression dans le tableau

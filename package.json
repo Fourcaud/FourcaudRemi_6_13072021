@@ -1,11 +1,25 @@
 {
-  "name": "FishEye",
+  "name": "fisheye",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projet 6",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch ./sass/main.scss:./public/css/style.css"
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
+    "js:dev": "npx webpack --entry ./javascript/photographerPage.js -o ./public/javascript/photographerPage --watch --mode=development",
+    "js:prod": "npx webpack --entry ./javascript/photographerPage.js -o ./public/javascript/photographerPage --mode=production"
   },
   "author": "RF",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fourcaud/FourcaudRemi_6_13072021.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Fourcaud/FourcaudRemi_6_13072021/issues"
+  },
+  "homepage": "https://github.com/Fourcaud/FourcaudRemi_6_13072021#readme",
+  "devDependencies": {
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2"
+  }
 }
