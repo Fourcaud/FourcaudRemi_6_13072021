@@ -1,5 +1,3 @@
-import { filterByName } from "./lightboxModal";
-
 function fetchData(callback) {
   fetch("http://127.0.0.1:5500/public/FishEyeData.json")
     .then((res) => res.json())
@@ -23,25 +21,24 @@ function fetchPhotographer(photographers) {
     (photographer) => photographer.id === PhotographersID
   );
 
-  htmlPhotographers += `<article class="card"><img class="card__portrait" src="../photos/PhotographersIDPhotos/${resultat.portrait}" alt="${resultat.name}" />`;
+  htmlPhotographers += `<article class="card-photographer"><img class="card-photographer__portrait" src="../photos/PhotographersIDPhotos/${resultat.portrait}" alt="${resultat.name}" />`;
 
   htmlPhotographers +=
-    '<div class="card__name"><h2>' + resultat.name + "</h2></div>";
+    '<div class="card-photographer__name"><h2>' + resultat.name + "</h2></div>";
 
   htmlPhotographers +=
-    '<div class="card__country"><h3>' +
+    '<div class="card-photographer__country"><h3>' +
     resultat.country +
     ", " +
     resultat.city +
-    "</h3></div>";
+    "</h3><h4>" +
+    resultat.tagline +
+    "</h4></div>";
 
-  htmlPhotographers +=
-    '<div class="card__tagline"><h4>' + resultat.tagline + "</h4></div>";
-
-  htmlPhotographers +=
-    '<div class="card__price"><h5>' + resultat.price + "€/jour</h5></div>";
   prixParJour = resultat.price;
-  htmlPhotographers += '<div class="card__tags ">';
+  htmlPhotographers += `<button class="card-photographer__btn">Contactez-moi</button>`;
+
+  htmlPhotographers += '<div class="card-photographer__tags ">';
   for (let j in resultat.tags) {
     htmlPhotographers += '<h6 class="labeltags">#' + resultat.tags[j] + "</h6>";
   }
@@ -89,7 +86,7 @@ function fetchAllMedia(media) {
       resultat[y].title +
       "</h2></div>";
     const nombreLike = parseInt(resultat[y].likes, 16);
-    htmlMedia += `<div class="item__tagline"><h3>${nombreLike}</h3> <i id="${resultat[y].id}" onclick="myFunction(${y})" class="far fa-heart"></i></div>`;
+    htmlMedia += `<div class="item__tagline"><h3>${nombreLike}</h3> <i onClick="modifyLike(${y})" class="far fa-heart"></i></div>`;
     totalDeLike += nombreLike;
     htmlMedia += "</div></div>";
 
@@ -99,7 +96,25 @@ function fetchAllMedia(media) {
   }
 }
 
-function myFunction(x) {
+function modifyLike(x) {
+  const item = mediaDuPhotographe[x].id;
+  const coeurelem = document.getElementById(item.id);
+
+  coeurelem.classList.toggle("fas");
+
+  if (coeurelem.classList.contains("fas")) {
+    coeurelem.previousElementSibling.innerHTML++;
+    totalDeLike++;
+    affichageTotalLike();
+  } else {
+    coeurelem.previousElementSibling.innerHTML--;
+    totalDeLike--;
+    affichageTotalLike();
+  }
+}
+/* ${resultat[y].id}"  onclick="myFunction(${y})" */
+
+/* function myFunction(x) {
   const item = mediaDuPhotographe[x].id;
   const coeurelem = document.getElementById(item.id);
   coeurelem.classList.toggle("fas");
@@ -112,7 +127,8 @@ function myFunction(x) {
     totalDeLike--;
     affichageTotalLike();
   }
-}
+} */
+
 function affichageTotalLike() {
   let affichageLikePrix = document.getElementById("like-prix");
   let htmlLikePrix = "";
@@ -128,26 +144,17 @@ fetchData((photographers, media) => {
   affichageTotalLike();
 });
 
-document
-  .getElementById("populariteTrie")
-  .addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
+let selectElem = document.getElementById("tri-select");
 
-    filterByLike(mediaDuPhotographe);
-  });
-
-document.getElementById("dateTrie").addEventListener("click", function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-
-  filterByDate(mediaDuPhotographe);
-});
-document.getElementById("titreTrie").addEventListener("click", function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-
-  filterByName(mediaDuPhotographe, fetchAllMedia);
+selectElem.addEventListener("change", function () {
+  let index = selectElem.selectedIndex;
+  if (index == 0) {
+    filterByLike();
+  } else if (index == 1) {
+    filterByName();
+  } else {
+    filterByDate();
+  }
 });
 
 function filterByLike() {
@@ -165,4 +172,13 @@ function filterByDate() {
   filteredDate.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   fetchAllMedia(filteredDate);
+}
+
+function filterByName() {
+  // Affiche les checkboxes
+  let filteredTitle = [];
+  filteredTitle = mediaDuPhotographe;
+  filteredTitle.sort((a, b) => a.title.localeCompare(b.title));
+
+  fetchAllMedia(filteredTitle);
 }
