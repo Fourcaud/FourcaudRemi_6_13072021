@@ -86,7 +86,7 @@ function fetchAllMedia(media) {
       resultat[y].title +
       "</h2></div>";
     const nombreLike = parseInt(resultat[y].likes, 16);
-    htmlMedia += `<div class="item__tagline"><h3>${nombreLike}</h3> <i onClick="modifyLike(${y})" class="far fa-heart"></i></div>`;
+    htmlMedia += `<button onclick="../public/javascript/photographerPage/main.js/modifyLike()" class="item__tagline"><h3>${nombreLike}</h3><i id="test" class="far fa-heart"></i></button>`;
     totalDeLike += nombreLike;
     htmlMedia += "</div></div>";
 
@@ -96,7 +96,7 @@ function fetchAllMedia(media) {
   }
 }
 
-function modifyLike(x) {
+function modifyLike() {
   const item = mediaDuPhotographe[x].id;
   const coeurelem = document.getElementById(item.id);
 
@@ -112,22 +112,6 @@ function modifyLike(x) {
     affichageTotalLike();
   }
 }
-/* ${resultat[y].id}"  onclick="myFunction(${y})" */
-
-/* function myFunction(x) {
-  const item = mediaDuPhotographe[x].id;
-  const coeurelem = document.getElementById(item.id);
-  coeurelem.classList.toggle("fas");
-  if (coeurelem.classList.contains("fas")) {
-    coeurelem.previousElementSibling.innerHTML++;
-    totalDeLike++;
-    affichageTotalLike();
-  } else {
-    coeurelem.previousElementSibling.innerHTML--;
-    totalDeLike--;
-    affichageTotalLike();
-  }
-} */
 
 function affichageTotalLike() {
   let affichageLikePrix = document.getElementById("like-prix");
@@ -145,7 +129,6 @@ fetchData((photographers, media) => {
 });
 
 let selectElem = document.getElementById("tri-select");
-
 selectElem.addEventListener("change", function () {
   let index = selectElem.selectedIndex;
   if (index == 0) {
@@ -156,7 +139,6 @@ selectElem.addEventListener("change", function () {
     filterByDate();
   }
 });
-
 function filterByLike() {
   // Affiche les checkboxes
   let filteredLike = [];
@@ -173,7 +155,6 @@ function filterByDate() {
 
   fetchAllMedia(filteredDate);
 }
-
 function filterByName() {
   // Affiche les checkboxes
   let filteredTitle = [];
