@@ -1,3 +1,20 @@
+/* function ready(callback) {
+  // in case the document is already rendered
+  if (document.readyState != "loading") callback();
+  // modern browsers
+  else if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", callback);
+  // IE <= 8
+  else
+    document.attachEvent("onreadystatechange", function () {
+      if (document.readyState == "complete") callback();
+    });
+}
+
+ready(function () {});
+ */
+import { filterByDate, filterByLike, filterByName } from "./component.js";
+import formModal from "./formModal.js";
 function fetchData(callback) {
   fetch("http://127.0.0.1:5500/public/FishEyeData.json")
     .then((res) => res.json())
@@ -36,7 +53,7 @@ function fetchPhotographer(photographers) {
     "</h4></div>";
 
   prixParJour = resultat.price;
-  htmlPhotographers += `<button class="card-photographer__btn">Contactez-moi</button>`;
+  htmlPhotographers += `<button class="card-photographer__btn btn-signup modal-btn">Contactez-moi</button>`;
 
   htmlPhotographers += '<div class="card-photographer__tags ">';
   for (let j in resultat.tags) {
@@ -86,7 +103,7 @@ function fetchAllMedia(media) {
       resultat[y].title +
       "</h2></div>";
     const nombreLike = parseInt(resultat[y].likes, 16);
-    htmlMedia += `<button onclick="../public/javascript/photographerPage/main.js/modifyLike()" class="item__tagline"><h3>${nombreLike}</h3><i id="test" class="far fa-heart"></i></button>`;
+    htmlMedia += `<div class="item__tagline"><h3>${nombreLike}</h3><i id="${resultat[y].id}" onclick="modifyLike(${y})" class="far fa-heart"></i></div>`;
     totalDeLike += nombreLike;
     htmlMedia += "</div></div>";
 
@@ -96,10 +113,11 @@ function fetchAllMedia(media) {
   }
 }
 
-function modifyLike() {
-  const item = mediaDuPhotographe[x].id;
-  const coeurelem = document.getElementById(item.id);
+function modifyLike(x) {
+  const { id } = mediaDuPhotographe[x];
+  const coeurelem = document.getElementById(id);
 
+  coeurelem.classList.toggle("far");
   coeurelem.classList.toggle("fas");
 
   if (coeurelem.classList.contains("fas")) {
@@ -112,7 +130,7 @@ function modifyLike() {
     affichageTotalLike();
   }
 }
-
+window.modifyLike = modifyLike;
 function affichageTotalLike() {
   let affichageLikePrix = document.getElementById("like-prix");
   let htmlLikePrix = "";
@@ -120,46 +138,22 @@ function affichageTotalLike() {
   htmlLikePrix += `<div>${prixParJour}€/jour</div>`;
   affichageLikePrix.innerHTML = htmlLikePrix;
 }
-// Affichage de tous les media
-
-fetchData((photographers, media) => {
-  fetchAllMedia(media);
-  fetchPhotographer(photographers);
-  affichageTotalLike();
-});
 
 let selectElem = document.getElementById("tri-select");
 selectElem.addEventListener("change", function () {
   let index = selectElem.selectedIndex;
   if (index == 0) {
-    filterByLike();
+    filterByLike(mediaDuPhotographe, fetchAllMedia);
   } else if (index == 1) {
-    filterByName();
+    filterByName(mediaDuPhotographe, fetchAllMedia);
   } else {
-    filterByDate();
+    filterByDate(mediaDuPhotographe, fetchAllMedia);
   }
 });
-function filterByLike() {
-  // Affiche les checkboxes
-  let filteredLike = [];
-  filteredLike = mediaDuPhotographe;
-  filteredLike.sort((a, b) => b.likes - a.likes);
 
-  fetchAllMedia(filteredLike);
-}
-function filterByDate() {
-  // Affiche les checkboxes
-  let filteredDate = [];
-  filteredDate = mediaDuPhotographe;
-  filteredDate.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  fetchAllMedia(filteredDate);
-}
-function filterByName() {
-  // Affiche les checkboxes
-  let filteredTitle = [];
-  filteredTitle = mediaDuPhotographe;
-  filteredTitle.sort((a, b) => a.title.localeCompare(b.title));
-
-  fetchAllMedia(filteredTitle);
-}
+fetchData((photographers, media) => {
+  fetchAllMedia(media);
+  fetchPhotographer(photographers);
+  affichageTotalLike();
+  formModal();
+});

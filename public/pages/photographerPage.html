@@ -45,7 +45,68 @@
     </div>
     </main>
       
+    <div class="bground">
+      <div class="content">
+        <span class="close"></span> <!--ToDo : Fermer la modale #1 -->
+        <div class="modal-body">
+          <form
+            id="reserve-form"
+            name="reserve"
+            action="index.html"
+            method="get"
+          >
+            <div
+              class="formData" >
+              <label for='first'>Prénom</label><br>
+              <input
+                class="text-control"
+                type="text"
+                id="first"
+                name="first"                 
+                                                  
+              /><br>
+            </div>
+            <div
+              class="formData">
+              <label for='last' >Nom</label><br>
+              <input
+                class="text-control"
+                type="text"
+                id="last"
+                name="last"                
+                                
+              /><br>
+            </div>
+            <div
+              class="formData"  >
+              <label for='email' >E-mail</label><br>
+              <input
+                class="text-control"
+                type="email"
+                id="email"
+                name="email"              
+               
+              /><br>
+            </div> 
+            <div class="formData" ><br>
+            <label for="story">Votre Message</label>
 
+            <textarea id="story" name="story"
+                      rows="5" cols="33">            
+            </textarea>
+            </div>       
+                       
+            <input
+              class="btn-submit"
+              type="submit"
+              class="button"
+              value="Envoyer"
+            />
+          </form>
+          
+        </div>
+      </div>
+    </div>
     
       <section id="media" class="container__item">
         <!-- Liste des medias -->
@@ -54,5 +115,6 @@
     </div>
     <footer></footer>
     <script src="../javascript/photographerPage/main.js"></script>
+    
   </body>
 </html>
