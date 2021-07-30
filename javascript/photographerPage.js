@@ -1,20 +1,7 @@
-/* function ready(callback) {
-  // in case the document is already rendered
-  if (document.readyState != "loading") callback();
-  // modern browsers
-  else if (document.addEventListener)
-    document.addEventListener("DOMContentLoaded", callback);
-  // IE <= 8
-  else
-    document.attachEvent("onreadystatechange", function () {
-      if (document.readyState == "complete") callback();
-    });
-}
-
-ready(function () {});
- */
 import { filterByDate, filterByLike, filterByName } from "./component.js";
 import formModal from "./formModal.js";
+import lightbox from "./lightboxModal.js";
+
 function fetchData(callback) {
   fetch("http://127.0.0.1:5500/public/FishEyeData.json")
     .then((res) => res.json())
@@ -82,28 +69,18 @@ function fetchAllMedia(media) {
   mediaDuPhotographe = resultat;
   for (let y in resultat) {
     if (resultat[y].image) {
-      htmlMedia +=
-        '<article class="item"><img class="item__photo" src="../photos/' +
-        resultat[y].photographerId +
-        "/" +
-        resultat[y].image +
-        '" alt="' +
-        resultat[y].title +
-        '" />';
+      htmlMedia += `<article class="item"><img onclick="lightboxModal(${y})" class="item__photo"  
+      src="../photos/${resultat[y].photographerId}/${resultat[y].image}" alt="${resultat[y].title}" />`;
     } else {
-      htmlMedia +=
-        '<article class="item"><video autoplay class="item__video"> <source src="../photos/' +
-        resultat[y].photographerId +
-        "/" +
-        resultat[y].video +
-        '"  type="video/mp4"  ></video>';
+      htmlMedia += `<article class="item"><video onclick="lightboxModal(${y})" autoplay class="item__video modal-btn-lightbox"> 
+      <source src="../photos/${resultat[y].photographerId}/${resultat[y].video}"  type="video/mp4" ></video>`;
     }
     htmlMedia +=
       '<div class="item__flex"><div class="item__name"><h2>' +
       resultat[y].title +
       "</h2></div>";
-    const nombreLike = parseInt(resultat[y].likes, 16);
-    htmlMedia += `<div class="item__tagline"><h3>${nombreLike}</h3><i id="${resultat[y].id}" onclick="modifyLike(${y})" class="far fa-heart"></i></div>`;
+    const nombreLike = parseInt(resultat[y].likes);
+    htmlMedia += `<div class="item__tagline" id="item__tagline"><h3>${nombreLike}</h3><i id="${resultat[y].id}" onclick="modifyLike(${y})" class="far fa-heart"></i></div>`;
     totalDeLike += nombreLike;
     htmlMedia += "</div></div>";
 
@@ -115,9 +92,9 @@ function fetchAllMedia(media) {
 
 function modifyLike(x) {
   const { id } = mediaDuPhotographe[x];
+
   const coeurelem = document.getElementById(id);
 
-  coeurelem.classList.toggle("far");
   coeurelem.classList.toggle("fas");
 
   if (coeurelem.classList.contains("fas")) {
@@ -126,11 +103,14 @@ function modifyLike(x) {
     affichageTotalLike();
   } else {
     coeurelem.previousElementSibling.innerHTML--;
+
     totalDeLike--;
     affichageTotalLike();
   }
 }
+
 window.modifyLike = modifyLike;
+
 function affichageTotalLike() {
   let affichageLikePrix = document.getElementById("like-prix");
   let htmlLikePrix = "";
@@ -156,4 +136,5 @@ fetchData((photographers, media) => {
   fetchPhotographer(photographers);
   affichageTotalLike();
   formModal();
+  lightbox(mediaDuPhotographe);
 });
