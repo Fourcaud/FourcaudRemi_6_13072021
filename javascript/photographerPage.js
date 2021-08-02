@@ -52,6 +52,11 @@ function fetchPhotographer(photographers) {
 
   // Affichage de l'ensemble des lignes en HTML
   elPhotographers.innerHTML = htmlPhotographers;
+
+  let nomPourForm = document.getElementById("nameHeader");
+  let htmlPourForm = "";
+  htmlPourForm += `<p> Contactez-Moi ${resultat.name} </p>`;
+  nomPourForm.innerHTML = htmlPourForm;
 }
 
 function fetchAllMedia(media) {

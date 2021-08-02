@@ -1,3 +1,11 @@
+.header-media {
+  &__logo-media {
+    margin: 43px 0 100px 100px;
+    width: 200px;
+    height: 50px;
+  }
+}
+
 .container__item {
   display: flex;
   flex-direction: row;
@@ -7,16 +15,17 @@
 }
 
 .item {
-  width: 526px;
+  width: 350px;
+  height: 350px;
   text-align: center;
   margin-bottom: 30px;
+  margin: 0 45px 45px 45px;
   &__flex {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 350px;
-    margin: auto;
+    margin-top: -10px;
   }
   &__photo {
     width: 350px;
@@ -85,19 +94,22 @@
 
 .card-photographer {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 0;
-  grid-row-gap: 0;
-  justify-items: center;
-  align-items: center;
+  grid-template-columns: 110px 400px 17px 170px 370px 200px 170px;
+  grid-template-rows: 80px 80px 40px;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". card-photographer__name . card-photographer__btn . card-photographer__portrait ."
+    ". card-photographer__country . . . card-photographer__portrait ."
+    ". card-photographer__tags . . . . .";
+  margin-bottom: 60px;
   & h2 {
     font-family: DM Sans;
     font-style: normal;
     font-weight: normal;
     font-size: 64px;
     line-height: 83px;
-
+    margin: 0;
     color: #d3573c;
   }
   & h3 {
@@ -106,8 +118,9 @@
     font-weight: normal;
     font-size: 24px;
     line-height: 31px;
-
     color: #901c1c;
+    margin-top: 10px;
+    margin: 0;
   }
   & h4 {
     font-family: DM Sans;
@@ -115,13 +128,16 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 23px;
-
+    margin: 0;
     color: #525252;
   }
   & h6 {
-    border: 0.5px solid #c4c4c4;
-    box-sizing: border-box;
-    border-radius: 12px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    color: #911c1c;
   }
   &__btn {
     background: #911c1c;
@@ -133,8 +149,6 @@
     font-weight: bold;
     font-size: 20px;
     line-height: 26px;
-    /* identical to box height */
-
     display: flex;
     align-items: center;
     text-align: center;
@@ -144,40 +158,48 @@
 }
 
 .card-photographer__name {
-  grid-area: 1 / 2 / 2 / 2;
+  grid-area: card-photographer__name;
   font-family: DM Sans;
   width: 400px;
   height: 83px;
 }
+
 .card-photographer__country {
-  grid-area: 2 / 2 / 3 / 2;
+  grid-area: card-photographer__country;
   width: 400px;
   height: 80px;
 }
+
 .card-photographer__tags {
-  grid-area: 3 / 2 / 4 / 2;
+  grid-area: card-photographer__tags;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 400px;
   height: 40px;
 }
+
 .card-photographer__btn {
-  grid-area: 1 / 3 / 2 / 3;
+  grid-area: card-photographer__btn;
 }
+
 .card-photographer__portrait {
-  grid-area: 2 / 4 / 3 / 4;
+  grid-area: card-photographer__portrait;
   width: 200px;
   height: 200px;
   border-radius: 100px;
   object-fit: cover;
 }
+
 #tri-select {
-  height: 58px;
+  height: 60px;
   background: #911c1c;
-  border-radius: 5px;
+  color: white;
+  width: 170px;
+  padding-left: 15px;
+  margin-left: 30px;
 }
 #container-tri {
-  margin-left: 15%;
   margin-bottom: 30px;
+  margin-left: 100px;
 }

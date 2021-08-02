@@ -67,8 +67,13 @@
   width: 200px;
   height: 50px;
 }
+.header__logo-media {
+  width: 200px;
+  height: 50px;
+  left: 0;
+  position: absolute;
+}
 .header__h1 {
-  width: 306px;
   height: 57px;
   font-family: DM Sans;
   font-style: normal;
@@ -110,7 +115,6 @@ input:checked ~ label {
 }
 
 .card {
-  width: 526px;
   text-align: center;
   margin-bottom: 30px;
 }
@@ -200,6 +204,7 @@ input:checked ~ label {
 
 .lien {
   text-decoration: none;
+  margin: 0 60px;
 }
 
 .bground {
@@ -214,17 +219,29 @@ input:checked ~ label {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-body input {
+  width: 600px;
+  height: 70px;
+  border-radius: 5px;
+}
+
 .content {
   margin: 5% auto;
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
+  height: 900px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
-  background: #232323;
+  background: #db8876;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  color: #fff;
+  color: black;
   padding-top: 10px;
 }
 
@@ -368,6 +385,12 @@ input:checked ~ label {
   font-size: xxx-large;
 }
 
+.header-media__logo-media {
+  margin: 43px 0 100px 100px;
+  width: 200px;
+  height: 50px;
+}
+
 .container__item {
   display: flex;
   flex-direction: row;
@@ -377,17 +400,18 @@ input:checked ~ label {
 }
 
 .item {
-  width: 526px;
+  width: 350px;
+  height: 350px;
   text-align: center;
   margin-bottom: 30px;
+  margin: 0 45px 45px 45px;
 }
 .item__flex {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 350px;
-  margin: auto;
+  margin-top: -10px;
 }
 .item__photo {
   width: 350px;
@@ -454,12 +478,12 @@ input:checked ~ label {
 
 .card-photographer {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 0;
-  grid-row-gap: 0;
-  justify-items: center;
-  align-items: center;
+  grid-template-columns: 110px 400px 17px 170px 370px 200px 170px;
+  grid-template-rows: 80px 80px 40px;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas: ". card-photographer__name . card-photographer__btn . card-photographer__portrait ." ". card-photographer__country . . . card-photographer__portrait ." ". card-photographer__tags . . . . .";
+  margin-bottom: 60px;
 }
 .card-photographer h2 {
   font-family: DM Sans;
@@ -467,6 +491,7 @@ input:checked ~ label {
   font-weight: normal;
   font-size: 64px;
   line-height: 83px;
+  margin: 0;
   color: #d3573c;
 }
 .card-photographer h3 {
@@ -476,6 +501,8 @@ input:checked ~ label {
   font-size: 24px;
   line-height: 31px;
   color: #901c1c;
+  margin-top: 10px;
+  margin: 0;
 }
 .card-photographer h4 {
   font-family: DM Sans;
@@ -483,12 +510,16 @@ input:checked ~ label {
   font-weight: normal;
   font-size: 18px;
   line-height: 23px;
+  margin: 0;
   color: #525252;
 }
 .card-photographer h6 {
-  border: 0.5px solid #c4c4c4;
-  box-sizing: border-box;
-  border-radius: 12px;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  color: #911c1c;
 }
 .card-photographer__btn {
   background: #911c1c;
@@ -500,7 +531,6 @@ input:checked ~ label {
   font-weight: bold;
   font-size: 20px;
   line-height: 26px;
-  /* identical to box height */
   display: flex;
   align-items: center;
   text-align: center;
@@ -508,33 +538,33 @@ input:checked ~ label {
 }
 
 .card-photographer__name {
-  grid-area: 1/2/2/2;
+  grid-area: card-photographer__name;
   font-family: DM Sans;
   width: 400px;
   height: 83px;
 }
 
 .card-photographer__country {
-  grid-area: 2/2/3/2;
+  grid-area: card-photographer__country;
   width: 400px;
   height: 80px;
 }
 
 .card-photographer__tags {
-  grid-area: 3/2/4/2;
+  grid-area: card-photographer__tags;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 400px;
   height: 40px;
 }
 
 .card-photographer__btn {
-  grid-area: 1/3/2/3;
+  grid-area: card-photographer__btn;
 }
 
 .card-photographer__portrait {
-  grid-area: 2/4/3/4;
+  grid-area: card-photographer__portrait;
   width: 200px;
   height: 200px;
   border-radius: 100px;
@@ -542,14 +572,17 @@ input:checked ~ label {
 }
 
 #tri-select {
-  height: 58px;
+  height: 60px;
   background: #911c1c;
-  border-radius: 5px;
+  color: white;
+  width: 170px;
+  padding-left: 15px;
+  margin-left: 30px;
 }
 
 #container-tri {
-  margin-left: 15%;
   margin-bottom: 30px;
+  margin-left: 100px;
 }
 
 /*# sourceMappingURL=style.css.map */

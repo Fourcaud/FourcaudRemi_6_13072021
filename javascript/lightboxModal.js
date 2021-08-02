@@ -27,14 +27,10 @@ function lightbox(mediaDuPhotographe) {
   window.lightboxModal = lightboxModal;
 
   function changeMediaLeft(y) {
-    const { id } = mediaDuPhotographe[y];
-    const coeurelem = document.getElementById(id);
     y--;
     lightboxModal(y);
   }
   function changeMediaRight(y) {
-    const { id } = mediaDuPhotographe[y];
-    const coeurelem = document.getElementById(id);
     y++;
     lightboxModal(y);
   }

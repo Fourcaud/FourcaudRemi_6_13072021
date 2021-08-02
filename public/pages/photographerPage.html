@@ -21,15 +21,15 @@
   </head>
 
   <body>
-    <header class="header">
+    <header class="header-media">
+      <a href="../">
       <img
-        class="header__logo"
+        class="header-media__logo-media"
         src="../photos/Logo/logo.png"
         alt="Fisheye Home page"
       />
 
-      <ul id="header__tags"></ul>
-      <h1 class="header__h1">Nos photographes</h1>
+    </a>
     </header>
 
     <main>
@@ -49,12 +49,15 @@
       <div class="content">
         <span class="close"></span> <!--ToDo : Fermer la modale #1 -->
         <div class="modal-body">
+          <div id="nameHeader"></div>
           <form
             id="reserve-form"
             name="reserve"
             action="index.html"
             method="get"
           >
+          
+
             <div
               class="formData" >
               <label for='first'>Prénom</label><br>
@@ -88,8 +91,8 @@
                
               /><br>
             </div> 
-            <div class="formData" ><br>
-            <label for="story">Votre Message</label>
+            <div class="formData" >
+            <label for="story">Votre Message</label><br>
 
             <textarea id="story" name="story"
                       rows="5" cols="33">            
