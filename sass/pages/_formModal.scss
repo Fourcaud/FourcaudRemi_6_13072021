@@ -12,17 +12,29 @@
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
 }
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & input {
+    width: 600px;
+    height: 70px;
+    border-radius: 5px;
+  }
+}
 .content {
   margin: 5% auto;
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
+  height: 900px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
-  background: #232323;
+  background: #db8876;
+
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  color: #fff;
+  color: black;
   padding-top: 10px;
 }
 
