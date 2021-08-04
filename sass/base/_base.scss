@@ -1,55 +1,429 @@
-@keyframes loading__spinner {
-  0% {
-    transform: rotate(0deg);
+@media only screen and (min-width: 1100px) {
+  .header__logo {
+    width: 200px;
+    height: 58px;
   }
-  50% {
-    transform: rotate(180deg);
+  .header h1 {
+    height: 57px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 47px;
   }
-  100% {
-    transform: rotate(360deg);
+  #like-prix {
+    width: 376px;
+    right: 50px;
+    display: flex;
   }
-}
-@keyframes loading__opacity {
-  0% {
-    opacity: 0;
-    z-index: 10;
+  .container__card-media {
+    flex-direction: row;
   }
-  10% {
-    opacity: 0.5;
-    z-index: 10;
+  .bloc-1 {
+    flex-direction: row;
+    &__btn {
+      width: 170px;
+      margin-left: 10px;
+      height: 69px;
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 26px;
+    }
+    &__portrait {
+      width: 200px;
+      height: 200px;
+    }
+    & h2 {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 50px;
+      line-height: 83px;
+      margin: 0;
+      color: #d3573c;
+      white-space: normal;
+    }
+    & h3 {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 31px;
+    }
+    & h4 {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+    }
+    & h6 {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 23px;
+    }
   }
-  50% {
-    opacity: 1;
-    z-index: 10;
+  .header-media__logo-media {
+    margin: 43px 0 100px 100px;
   }
-  100% {
-    opacity: 0;
-    z-index: 10;
+  .item-lightbox__photo,
+  .item-lightbox__video {
+    width: 1050px;
+
+    height: 900px;
   }
-}
-.loading__spinner {
-  display: flex;
-  justify-content: center;
+  .fa-chevron-left,
+  .fa-chevron-right {
+    font-size: xxx-large;
+    margin: 0 20px;
+  }
+  .btn-submit {
+    height: 69px;
+    width: 170px;
+  }
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & p {
+      font-family: DM Sans;
+      font-size: 64px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 83px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    &__text-control {
+      width: 600px;
+      height: 70px;
+    }
+
+    & textarea {
+      width: 600px;
+      height: 170px;
+    }
+    & label {
+      font-family: DM Sans;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 47px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+  }
+  #header__tags {
+    justify-content: space-evenly;
+  }
+  #nameHeader {
+    width: 600px;
+  }
+  .content {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+  }
+  .labeltags {
+    margin: 10px;
+  }
 }
 
-.loading__spinner div {
-  position: fixed;
-  width: 160px;
-  height: 160px;
-  top: 30%;
-  border-radius: 50%;
-  box-shadow: 0 4px 0 0 #9356dc;
-  transform-origin: 80px 80px;
-  animation: 2s loading__spinner linear infinite;
+@media only screen and (min-width: 376px) and (max-width: 1100px) {
+  .header__logo {
+    width: 200px;
+    height: 58px;
+  }
+  .header h1 {
+    height: 57px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 47px;
+  }
+  #like-prix {
+    width: 100%;
+    right: 0;
+    display: flex;
+  }
+  .container__card-media {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .bloc-1 {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    &__portrait {
+      width: 200px;
+      height: 200px;
+    }
+    &__btn {
+      width: 100%;
+      margin: 0;
+      height: 69px;
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 26px;
+    }
+    & h2 {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 50px;
+      line-height: 83px;
+      margin: 0;
+      color: #d3573c;
+      white-space: normal;
+    }
+    & h3 {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 31px;
+    }
+    & h4 {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+    }
+    & h6 {
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 23px;
+    }
+  }
+  .item-lightbox__photo,
+  .item-lightbox__video {
+    width: 80%;
+    height: 900px;
+  }
+  .fa-chevron-left,
+  .fa-chevron-right {
+    font-size: xxx-large;
+    margin: 0 20px;
+  }
+  .btn-submit {
+    height: 69px;
+    width: 170px;
+  }
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & p {
+      font-family: DM Sans;
+      font-size: 64px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 83px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    &__text-control {
+      width: 600px;
+      height: 70px;
+    }
+
+    & textarea {
+      width: 600px;
+      height: 170px;
+    }
+    & label {
+      font-family: DM Sans;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 47px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+  }
+  #nameHeader {
+    width: 600px;
+  }
+  .content {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+  }
+  .labeltags {
+    margin: 10px;
+  }
 }
 
-.loading {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: fixed;
-  background: rgba(255, 255, 255, 0.808);
-  animation: 4s loading__opacity;
-  opacity: 0;
-  z-index: -1000;
+@media screen and (max-width: 375px) {
+  .header-media__logo-media {
+    margin: 40px 0 30px 20px;
+  }
+
+  .bloc-1 {
+    width: 50%;
+    &__portrait {
+      width: 100px;
+      height: 100px;
+    }
+    &__btn {
+      border: none;
+      position: fixed;
+      bottom: 20px;
+      font-family: DM Sans;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 23px;
+      letter-spacing: 0em;
+      text-align: center;
+      width: 50%;
+      left: 25%;
+      font-family: DM Sans;
+    }
+    & h2 {
+      font-family: DM Sans;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 47px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    & h3 {
+      font-family: DM Sans;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 17px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    & h4 {
+      font-family: DM Sans;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 17px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    & h6 {
+      font-family: DM Sans;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 17px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+  }
+  #header__tags {
+    justify-content: space-evenly;
+  }
+  #like-prix {
+    display: none;
+  }
+  #container-tri {
+    display: none;
+  }
+  .fa-chevron-left,
+  .fa-chevron-right {
+    font-size: larger;
+    margin: 0px 13px;
+  }
+  .item-lightbox__photo,
+  .item-lightbox__video {
+    width: 80%;
+    margin-top: 140px;
+  }
+  .btn-submit {
+    height: 35px;
+    width: 170px;
+    color: white;
+    border: none;
+  }
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & p {
+      font-family: DM Sans;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 47px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    &__text-control {
+      width: 100%;
+      height: 52px;
+    }
+
+    & textarea {
+      width: 100%;
+      height: 180px;
+    }
+    & label {
+      font-family: DM Sans;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 31px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+  }
+  #nameHeader {
+    width: 90%;
+  }
+  .content {
+    width: 100%;
+  }
+  .formData {
+    width: 90%;
+  }
+  #reserve-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  #header__tags {
+    order: 2;
+    padding: 0;
+    width: 80%;
+    justify-content: center;
+  }
+  .header__logo {
+    width: 50%;
+    height: 37px;
+  }
+  .header__h1 {
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #911c1c;
+  }
+  .labeltags {
+    margin: 2px;
+  }
 }

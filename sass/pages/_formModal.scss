@@ -10,23 +10,40 @@
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  background: #c4c4c466;
+}
+.btn-submit {
+  left: 0px;
+  top: 0px;
+  border-radius: 5px;
+  background: #901c1c;
+  margin: 20px 0;
 }
 .modal-body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  & input {
-    width: 600px;
-    height: 70px;
+
+  & p {
+    margin: 0 0 20px 0;
+  }
+  &__text-control {
     border-radius: 5px;
+    border: none;
+    box-shadow: none;
+  }
+
+  & textarea {
+    border-radius: 5px;
+    border: none;
+    box-shadow: none;
+  }
+  & label {
+    margin: 10px 0 5px 0;
   }
 }
+
 .content {
-  margin: 5% auto;
-  width: 100%;
-  max-width: 700px;
-  height: 900px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #db8876;
@@ -41,13 +58,12 @@
 .close {
   /*<!--ToDo : Fermer la modale #1 -->*/
   position: absolute;
-  right: 15px;
-  top: 15px;
-  width: 32px;
-  height: 32px;
+  right: 35px;
+  top: 35px;
+  width: 42px;
+  height: 42px;
   opacity: 1;
   cursor: pointer;
-  transform: scale(0.7);
 }
 .close:before,
 .close:after {
@@ -66,13 +82,13 @@
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 1.5em;
   color: #e54858;
   display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 15px;
+  margin-bottom: 25px;
   text-align: left;
-  line-height: 0.3;
+  line-height: 1;
   opacity: 0;
   transition: 0.3s;
 }

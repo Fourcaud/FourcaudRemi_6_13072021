@@ -24,14 +24,12 @@ function fetchPhotographer(photographers) {
   const resultat = photographers.find(
     (photographer) => photographer.id === PhotographersID
   );
-
-  htmlPhotographers += `<article class="card-photographer"><img class="card-photographer__portrait" src="../photos/PhotographersIDPhotos/${resultat.portrait}" alt="${resultat.name}" />`;
+  htmlPhotographers += `<div class="bloc-1"><div class="bloc-1__flex">`;
+  htmlPhotographers +=
+    '<div class="bloc-1__name"><h2>' + resultat.name + "</h2></div>";
 
   htmlPhotographers +=
-    '<div class="card-photographer__name"><h2>' + resultat.name + "</h2></div>";
-
-  htmlPhotographers +=
-    '<div class="card-photographer__country"><h3>' +
+    '<div class="bloc-1__country"><h3>' +
     resultat.country +
     ", " +
     resultat.city +
@@ -40,22 +38,21 @@ function fetchPhotographer(photographers) {
     "</h4></div>";
 
   prixParJour = resultat.price;
-  htmlPhotographers += `<button class="card-photographer__btn btn-signup modal-btn">Contactez-moi</button>`;
 
-  htmlPhotographers += '<div class="card-photographer__tags ">';
+  htmlPhotographers += '<div class="bloc-1__tags ">';
   for (let j in resultat.tags) {
     htmlPhotographers += '<h6 class="labeltags">#' + resultat.tags[j] + "</h6>";
   }
-  htmlPhotographers += "</div>";
-
-  htmlPhotographers += "</article>";
+  htmlPhotographers += "</div></div>";
+  htmlPhotographers += `<button class="bloc-1__btn btn-signup modal-btn">Contactez-moi</button></div>`;
+  htmlPhotographers += `<img class="bloc-1__portrait" src="../photos/PhotographersIDPhotos/${resultat.portrait}" alt="${resultat.name}" />`;
 
   // Affichage de l'ensemble des lignes en HTML
   elPhotographers.innerHTML = htmlPhotographers;
 
   let nomPourForm = document.getElementById("nameHeader");
   let htmlPourForm = "";
-  htmlPourForm += `<p> Contactez-Moi ${resultat.name} </p>`;
+  htmlPourForm += `<p> Contactez-Moi <br>${resultat.name} </p>`;
   nomPourForm.innerHTML = htmlPourForm;
 }
 
