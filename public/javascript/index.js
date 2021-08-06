@@ -1,5 +1,5 @@
 function fetchData(callback) {
-  fetch("http://127.0.0.1:5500/public/FishEyeData.json")
+  fetch("./FishEyeData.json")
     .then((res) => res.json())
     .then((data) => {
       callback(data.photographers);

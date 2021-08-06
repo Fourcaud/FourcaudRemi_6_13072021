@@ -3,7 +3,7 @@ import formModal from "./formModal.js";
 import lightbox from "./lightboxModal.js";
 
 function fetchData(callback) {
-  fetch("../public/FishEyeData.json")
+  fetch("../FishEyeData.json")
     .then((res) => res.json())
     .then((data) => {
       callback(data.photographers, data.media);
