@@ -1,6 +1,6 @@
 function formModal() {
   const modalbg = document.querySelector(".bground");
-  const modalBtn = document.querySelectorAll(".modal-btn");
+  const modalBtn = document.querySelectorAll(".modal-btn")[0];
   const formData = document.querySelectorAll(".formData");
   const closeBtn = document.querySelectorAll(".close");
 
@@ -15,7 +15,7 @@ function formModal() {
 
   document.getElementById("reserve-form").addEventListener("submit", validate);
 
-  modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+  modalBtn.addEventListener("click", launchModal);
 
   function launchModal() {
     modalbg.style.display = "block";
