@@ -1,4 +1,4 @@
-import { filterByDate, filterByLike, filterByName } from "./component.js";
+import { filterByDate, filterByName } from "./component.js";
 import formModal from "./formModal.js";
 import lightbox from "./lightboxModal.js";
 
@@ -94,9 +94,7 @@ function fetchAllMedia(media) {
 
 function modifyLike(x) {
   const { id } = mediaDuPhotographe[x];
-
   const coeurelem = document.getElementById(id);
-
   coeurelem.classList.toggle("fas");
 
   if (coeurelem.classList.contains("fas")) {
@@ -121,17 +119,73 @@ function affichageTotalLike() {
   affichageLikePrix.innerHTML = htmlLikePrix;
 }
 
-let selectElem = document.getElementById("tri-select");
+function myFunctionTri() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+window.myFunctionTri = myFunctionTri;
+// Close the dropdown if the user clicks outside of it
+window.onclick = function (event) {
+  if (!event.target.matches(".dropbtn")) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
+      }
+    }
+  }
+};
+function filterByLike() {
+  // Affiche les checkboxes
+  let filteredLike = [];
+  filteredLike = mediaDuPhotographe;
+  filteredLike.sort((a, b) => b.likes - a.likes);
+  fetchAllMedia(filteredLike);
+}
+/* 
+
+const dropBtn = document.querySelector(".dropbtn");
+const contDropBtn = document.querySelector(".contentDropBtn");
+const allBtn = document.querySelector(".dropdown-content");
+dropBtn.addEventListener("click", dropBtnBlock);
+
+function dropBtnBlock() {
+  contDropBtn.style.display = "none";
+}
+
+const btnPopulariteTri = document.getElementById("populariteTri");
+btnPopulariteTri.addEventListener("click", filterByLike());
+function filterByLike() {
+  // Affiche les checkboxes
+  let filteredLike = [];
+  filteredLike = mediaDuPhotographe;
+  filteredLike.sort((a, b) => b.likes - a.likes);
+  allBtn.style.display = "none";
+  fetchAllMedia(filteredLike);
+}
+const btnTitreTri = document.getElementById("titreTri");
+btnTitreTri.addEventListener(
+  "click",
+  filterByName(mediaDuPhotographe, fetchAllMedia)
+);
+const btnDateTri = document.getElementById("dateTri");
+btnDateTri.addEventListener(
+  "click",
+  filterByDate(mediaDuPhotographe, fetchAllMedia)
+); */
+
+/* let selectElem = document.getElementById("tri-select");
 selectElem.addEventListener("change", function () {
   let index = selectElem.selectedIndex;
-  if (index == 0) {
+  if (index === populariteTri) {
     filterByLike(mediaDuPhotographe, fetchAllMedia);
-  } else if (index == 1) {
+  } else if (index === titreTri) {
     filterByName(mediaDuPhotographe, fetchAllMedia);
   } else {
     filterByDate(mediaDuPhotographe, fetchAllMedia);
   }
-});
+});  */
 
 fetchData((photographers, media) => {
   fetchAllMedia(media);

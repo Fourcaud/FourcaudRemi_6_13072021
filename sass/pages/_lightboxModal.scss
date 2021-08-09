@@ -48,13 +48,17 @@
   &__photo {
     margin-inline: auto;
     border-radius: 5px;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: 50% 25%;
+    width: 1050px;
+    height: 900px;
   }
   &__video {
     height: 900px;
+    width: 1050px;
     margin-inline: auto;
     border-radius: 5px;
-    object-fit: contain;
+    object-fit: cover;
   }
 }
 

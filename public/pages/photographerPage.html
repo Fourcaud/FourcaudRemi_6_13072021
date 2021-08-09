@@ -35,14 +35,15 @@
     <main>
       <section id="photographers" class="container__card-media"></section>
 
-      <div id="container-tri">
-      <label for="tri-select">Trier Par</label>
-      <select name="tri" id="tri-select">
-        <option value="populariteTri" >Popularité</option>
-        <option value="titreTri" >Titre</option>
-        <option value="dateTri" >Date</option>
-      </select>
-    </div>
+
+          <div class="dropdown">
+            <button onclick="myFunctionTri();" class="dropbtn">Popularité<i class="fas fa-chevron-down"></i></button>
+            <div id="myDropdown" class="dropdown-content">
+              <a onclick="filterByLike()">Popularité<i class="fas fa-chevron-up"></i></a>
+              <a href="#titreTri">Titre<i class="fas fa-chevron-up"></i></a>
+              <a href="#dateTri">Date<i class="fas fa-chevron-up"></i></a>
+            </div>
+          </div>
     </main>
       
     <div class="bground">
