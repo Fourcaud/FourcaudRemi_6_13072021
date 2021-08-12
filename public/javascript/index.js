@@ -51,33 +51,35 @@ function FetchAll(photographers) {
     htmlPhotographers +=
       '<a class="lien" href="pages/photographerPage.html?id=' +
       photographers[i].id +
-      '"><article class="card"><img class="card__portrait" src="photos/PhotographersIDPhotos/' +
+      '"><article class="card" role="image"><img class="card__portrait" src="photos/PhotographersIDPhotos/' +
       photographers[i].portrait +
       '" alt="' +
       photographers[i].name +
       '" />';
 
     htmlPhotographers +=
-      '<div class="card__name"><h2>' + photographers[i].name + "</h2></div>";
+      '<div class="card__name" role="link"><h2>' +
+      photographers[i].name +
+      "</h2></div>";
 
     htmlPhotographers +=
-      '<div class="card__country"><h3>' +
+      '<div class="card__country" role="text paragraph"><h3>' +
       photographers[i].country +
       ", " +
       photographers[i].city +
       "</h3></div>";
 
     htmlPhotographers +=
-      '<div class="card__tagline"><h4>' +
+      '<div class="card__tagline" role="text paragraph"><h4>' +
       photographers[i].tagline +
       "</h4></div>";
 
     htmlPhotographers +=
-      '<div class="card__price"><h5>' +
+      '<div class="card__price" role="text paragraph"><h5>' +
       photographers[i].price +
       "€/jour</h5></div>";
 
-    htmlPhotographers += '<div class="card__tags ">';
+    htmlPhotographers += '<div class="card__tags" role="link">';
     for (let j in photographers[i].tags) {
       htmlPhotographers +=
         '<h6 class="labeltags">#' + photographers[i].tags[j] + "</h6>";

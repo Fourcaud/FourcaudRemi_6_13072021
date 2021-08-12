@@ -25,10 +25,12 @@ function fetchPhotographer(photographers) {
   );
   htmlPhotographers += `<div class="bloc-1"><div class="bloc-1__flex">`;
   htmlPhotographers +=
-    '<div class="bloc-1__name"><h2>' + resultat.name + "</h2></div>";
+    '<div class="bloc-1__name"  role="header"><h2>' +
+    resultat.name +
+    "</h2></div>";
 
   htmlPhotographers +=
-    '<div class="bloc-1__country"><h3>' +
+    '<div class="bloc-1__country" role="text"><h3>' +
     resultat.country +
     ", " +
     resultat.city +
@@ -38,13 +40,13 @@ function fetchPhotographer(photographers) {
 
   prixParJour = resultat.price;
 
-  htmlPhotographers += '<div class="bloc-1__tags ">';
+  htmlPhotographers += '<div class="bloc-1__tags " role="links">';
   for (let j in resultat.tags) {
     htmlPhotographers += '<h6 class="labeltags">#' + resultat.tags[j] + "</h6>";
   }
   htmlPhotographers += "</div></div>";
-  htmlPhotographers += `<button class="bloc-1__btn btn-signup modal-btn">Contactez-moi</button></div>`;
-  htmlPhotographers += `<img class="bloc-1__portrait" src="../photos/PhotographersIDPhotos/${resultat.portrait}" alt="${resultat.name}" />`;
+  htmlPhotographers += `<button class="bloc-1__btn btn-signup modal-btn" role="buttons">Contactez-moi</button></div>`;
+  htmlPhotographers += `<img class="bloc-1__portrait" src="../photos/PhotographersIDPhotos/${resultat.portrait}" alt="${resultat.name}" role="image"/>`;
 
   // Affichage de l'ensemble des lignes en HTML
   elPhotographers.innerHTML = htmlPhotographers;
@@ -71,17 +73,17 @@ function fetchAllMedia(media) {
   for (let y in resultat) {
     if (resultat[y].image) {
       htmlMedia += `<article class="item"><img onclick="lightboxModal(${y})" class="item__photo"  
-      src="../photos/${resultat[y].photographerId}/${resultat[y].image}" alt="${resultat[y].title}" />`;
+      src="../photos/${resultat[y].photographerId}/${resultat[y].image}" alt="${resultat[y].title}" role="image link"/>`;
     } else {
-      htmlMedia += `<article class="item"><video onclick="lightboxModal(${y})" autoplay class="item__video modal-btn-lightbox"> 
+      htmlMedia += `<article class="item"><video onclick="lightboxModal(${y})" autoplay class="item__video modal-btn-lightbox " role="video link"> 
       <source src="../photos/${resultat[y].photographerId}/${resultat[y].video}"  type="video/mp4" ></video>`;
     }
     htmlMedia +=
-      '<div class="item__flex"><div class="item__name"><h2>' +
+      '<div class="item__flex"><div class="item__name" role="text"><h2>' +
       resultat[y].title +
       "</h2></div>";
     const nombreLike = parseInt(resultat[y].likes);
-    htmlMedia += `<div class="item__tagline" id="item__tagline"><h3>${nombreLike}</h3><i id="${resultat[y].id}" onclick="modifyLike(${y})" class="far fa-heart"></i></div>`;
+    htmlMedia += `<div class="item__tagline" id="item__tagline" role="image" aria-hidden="true" title="Nombre de Like"><h3>${nombreLike}</h3><i id="${resultat[y].id}" onclick="modifyLike(${y})" class="far fa-heart"></i></div>`;
     totalDeLike += nombreLike;
     htmlMedia += "</div></div>";
 
