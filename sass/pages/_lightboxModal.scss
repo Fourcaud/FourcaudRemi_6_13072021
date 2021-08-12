@@ -43,19 +43,15 @@
     text-align: left;
     color: #901c1c;
     align-self: self-start;
-    margin: 10px 0 10px 15%;
+    margin: 10px 0 10px 20%;
   }
   &__photo {
     margin-inline: auto;
     border-radius: 5px;
     object-fit: cover;
     object-position: 50% 25%;
-    width: 1050px;
-    height: 900px;
   }
   &__video {
-    height: 900px;
-    width: 1050px;
     margin-inline: auto;
     border-radius: 5px;
     object-fit: cover;

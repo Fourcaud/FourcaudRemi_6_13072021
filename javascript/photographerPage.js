@@ -1,4 +1,3 @@
-import { filterByDate, filterByName } from "./component.js";
 import formModal from "./formModal.js";
 import lightbox from "./lightboxModal.js";
 
@@ -13,7 +12,7 @@ function fetchData(callback) {
 let totalDeLike = 0;
 let prixParJour = 0;
 let mediaDuPhotographe = [];
-
+let modifyNameFiltre = "Popularité";
 function fetchPhotographer(photographers) {
   // Selection de l'élément
   const PhotographersID = parseInt(
@@ -118,18 +117,29 @@ function affichageTotalLike() {
   htmlLikePrix += `<div>${prixParJour}€/jour</div>`;
   affichageLikePrix.innerHTML = htmlLikePrix;
 }
+function affichageTri() {
+  let navFiltre = document.getElementById("dropdown-id");
+  let htmlnavFiltre = "";
+  htmlnavFiltre += `<button onclick="myFunctionTri();" class="dropbtn">${modifyNameFiltre}<i class="fas fa-chevron-down"></i></button>`;
+  htmlnavFiltre += `<div id="myDropdown" class="dropdown-content">`;
+  htmlnavFiltre += `<a onclick="filterByLike()">Popularité<i class="fas fa-chevron-up"></i></a>`;
+  htmlnavFiltre += `<div class="barFiltre"></div><a onclick="filterByName()">Titre</a><div class="barFiltre"></div>`;
+  htmlnavFiltre += `<a onclick="filterByDate()">Date</a>`;
+  htmlnavFiltre += `</div>`;
+  navFiltre.innerHTML = htmlnavFiltre;
+}
 
 function myFunctionTri() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 window.myFunctionTri = myFunctionTri;
-// Close the dropdown if the user clicks outside of it
+
 window.onclick = function (event) {
   if (!event.target.matches(".dropbtn")) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
+    let dropdowns = document.getElementsByClassName("dropdown-content");
+    let i;
     for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
+      let openDropdown = dropdowns[i];
       if (openDropdown.classList.contains("show")) {
         openDropdown.classList.remove("show");
       }
@@ -137,55 +147,34 @@ window.onclick = function (event) {
   }
 };
 function filterByLike() {
-  // Affiche les checkboxes
   let filteredLike = [];
   filteredLike = mediaDuPhotographe;
   filteredLike.sort((a, b) => b.likes - a.likes);
+  modifyNameFiltre = "Popularité";
+  affichageTri();
   fetchAllMedia(filteredLike);
 }
-/* 
+window.filterByLike = filterByLike;
 
-const dropBtn = document.querySelector(".dropbtn");
-const contDropBtn = document.querySelector(".contentDropBtn");
-const allBtn = document.querySelector(".dropdown-content");
-dropBtn.addEventListener("click", dropBtnBlock);
-
-function dropBtnBlock() {
-  contDropBtn.style.display = "none";
+function filterByDate() {
+  let filteredDate = [];
+  filteredDate = mediaDuPhotographe;
+  filteredDate.sort((a, b) => new Date(b.date) - new Date(a.date));
+  modifyNameFiltre = "Date";
+  affichageTri();
+  fetchAllMedia(filteredDate);
 }
+window.filterByDate = filterByDate;
 
-const btnPopulariteTri = document.getElementById("populariteTri");
-btnPopulariteTri.addEventListener("click", filterByLike());
-function filterByLike() {
-  // Affiche les checkboxes
-  let filteredLike = [];
-  filteredLike = mediaDuPhotographe;
-  filteredLike.sort((a, b) => b.likes - a.likes);
-  allBtn.style.display = "none";
-  fetchAllMedia(filteredLike);
+function filterByName() {
+  let filteredTitle = [];
+  filteredTitle = mediaDuPhotographe;
+  filteredTitle.sort((a, b) => a.title.localeCompare(b.title));
+  modifyNameFiltre = "Titre";
+  affichageTri();
+  fetchAllMedia(filteredTitle);
 }
-const btnTitreTri = document.getElementById("titreTri");
-btnTitreTri.addEventListener(
-  "click",
-  filterByName(mediaDuPhotographe, fetchAllMedia)
-);
-const btnDateTri = document.getElementById("dateTri");
-btnDateTri.addEventListener(
-  "click",
-  filterByDate(mediaDuPhotographe, fetchAllMedia)
-); */
-
-/* let selectElem = document.getElementById("tri-select");
-selectElem.addEventListener("change", function () {
-  let index = selectElem.selectedIndex;
-  if (index === populariteTri) {
-    filterByLike(mediaDuPhotographe, fetchAllMedia);
-  } else if (index === titreTri) {
-    filterByName(mediaDuPhotographe, fetchAllMedia);
-  } else {
-    filterByDate(mediaDuPhotographe, fetchAllMedia);
-  }
-});  */
+window.filterByName = filterByName;
 
 fetchData((photographers, media) => {
   fetchAllMedia(media);
@@ -193,4 +182,6 @@ fetchData((photographers, media) => {
   affichageTotalLike();
   formModal();
   lightbox(mediaDuPhotographe);
+  affichageTri();
+  filterByLike();
 });
