@@ -72,10 +72,10 @@ function fetchAllMedia(media) {
   mediaDuPhotographe = resultat;
   for (let y in resultat) {
     if (resultat[y].image) {
-      htmlMedia += `<article class="item"><img onclick="lightboxModal(${y})" class="item__photo"  
-      src="../photos/${resultat[y].photographerId}/${resultat[y].image}" alt="${resultat[y].title}" role="image link"/>`;
+      htmlMedia += `<article class="item"  role="image link" aria-label="media${y}" tabindex="0"><img onclick="lightboxModal(${y})" class="item__photo"  
+      src="../photos/${resultat[y].photographerId}/${resultat[y].image}" alt="${resultat[y].title}"/>`;
     } else {
-      htmlMedia += `<article class="item"><video onclick="lightboxModal(${y})" autoplay class="item__video modal-btn-lightbox " role="video link"> 
+      htmlMedia += `<article class="item" role="video link" aria-label="media${y}" tabindex="0"><video onclick="lightboxModal(${y})" autoplay class="item__video modal-btn-lightbox " > 
       <source src="../photos/${resultat[y].photographerId}/${resultat[y].video}"  type="video/mp4" ></video>`;
     }
     htmlMedia +=
@@ -122,11 +122,11 @@ function affichageTotalLike() {
 function affichageTri() {
   let navFiltre = document.getElementById("dropdown-id");
   let htmlnavFiltre = "";
-  htmlnavFiltre += `<button onclick="myFunctionTri();" class="dropbtn">${modifyNameFiltre}<i class="fas fa-chevron-down"></i></button>`;
-  htmlnavFiltre += `<div id="myDropdown" class="dropdown-content">`;
-  htmlnavFiltre += `<a onclick="filterByLike()">Popularité<i class="fas fa-chevron-up"></i></a>`;
-  htmlnavFiltre += `<div class="barFiltre"></div><a onclick="filterByName()">Titre</a><div class="barFiltre"></div>`;
-  htmlnavFiltre += `<a onclick="filterByDate()">Date</a>`;
+  htmlnavFiltre += `<button onclick="myFunctionTri();" class="dropbtn" aria-expanded="true" aria-controls="id_about_menu" tabindex="0">${modifyNameFiltre}<i class="fas fa-chevron-down"></i></button>`;
+  htmlnavFiltre += `<div id="myDropdown" class="dropdown-content" id="id_about_menu" >`;
+  htmlnavFiltre += `<a onclick="filterByLike()"  tabindex="0">Popularité<i class="fas fa-chevron-up"></i></a>`;
+  htmlnavFiltre += `<div class="barFiltre"></div><a onclick="filterByName()" tabindex="0">Titre</a><div class="barFiltre"></div>`;
+  htmlnavFiltre += `<a onclick="filterByDate()" tabindex="0">Date</a>`;
   htmlnavFiltre += `</div>`;
   navFiltre.innerHTML = htmlnavFiltre;
 }

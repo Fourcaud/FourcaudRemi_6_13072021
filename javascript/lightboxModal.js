@@ -16,7 +16,7 @@ function lightbox(mediaDuPhotographe) {
     let lightboxMedia = "";
 
     if (mediaDuPhotographe[x].image) {
-      lightboxMedia += `<article class="item-lightbox" id="item-lightbox" data-id="${x}" ><div class="item-lightbox__flex"><i class="fas fa-chevron-left" onclick="changeMediaLeft(${x})" ></i><img id="${mediaDuPhotographe[x].id}" class="item-lightbox__photo" src="../photos/${mediaDuPhotographe[x].photographerId}/${mediaDuPhotographe[x].image}" alt="${mediaDuPhotographe[x].title}" /><i class="fas fa-chevron-right" onclick="changeMediaRight(${x})" ></i></div>`;
+      lightboxMedia += `<article class="item-lightbox" id="item-lightbox" data-id="${x}"><div class="item-lightbox__flex"><i class="fas fa-chevron-left" onclick="changeMediaLeft(${x})" ></i><img id="${mediaDuPhotographe[x].id}" class="item-lightbox__photo" src="../photos/${mediaDuPhotographe[x].photographerId}/${mediaDuPhotographe[x].image}" alt="${mediaDuPhotographe[x].title}" /><i class="fas fa-chevron-right" onclick="changeMediaRight(${x})" ></i></div>`;
     } else {
       lightboxMedia += `<article class="item-lightbox" id="item-lightbox" data-id="${x}"><div class="item-lightbox__flex"><i class="fas fa-chevron-left" onclick="changeMediaLeft(${x})" ></i><video id="${mediaDuPhotographe[x].id}" autoplay class="item-lightbox__video"><source src="../photos/${mediaDuPhotographe[x].photographerId}/${mediaDuPhotographe[x].video}" alt="${mediaDuPhotographe[x].title}"  type="video/mp4" ></video><i class="fas fa-chevron-right" onclick="changeMediaRight(${x})" ></i></div>`;
     }
