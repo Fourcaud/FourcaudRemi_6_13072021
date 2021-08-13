@@ -35,7 +35,7 @@ function formModal() {
     target.setAttribute("data-error-visible", true);
     target.setAttribute("data-error", message);
   }
-  //delete previous alerts
+
   function removeAlerts() {
     let invalidFields = document.querySelectorAll(
       '.formData[data-error-visible="true"]'

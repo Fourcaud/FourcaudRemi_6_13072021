@@ -492,9 +492,6 @@
     width: 100%;
   }
 }
-/**
- * Basic typography style for copy text
- */
 .header {
   display: flex;
   flex-direction: row;
