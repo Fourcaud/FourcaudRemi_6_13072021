@@ -48,49 +48,30 @@ function FetchAll(photographers) {
   let htmlPhotographers = "";
 
   for (let i in photographers) {
-    htmlPhotographers +=
-      '<a tabindex="0" class="lien" href="pages/photographerPage.html?id=' +
-      photographers[i].id +
-      '"><article class="card" role="image"><img class="card__portrait" src="photos/PhotographersIDPhotos/' +
-      photographers[i].portrait +
-      '" alt="' +
-      photographers[i].name +
-      '" />';
-
-    htmlPhotographers +=
-      '<div class="card__name" role="link"><h2>' +
-      photographers[i].name +
-      "</h2></div>";
-
-    htmlPhotographers +=
-      '<div class="card__country" role="text paragraph"><h3>' +
-      photographers[i].country +
-      ", " +
-      photographers[i].city +
-      "</h3></div>";
-
-    htmlPhotographers +=
-      '<div class="card__tagline" role="text paragraph"><h4>' +
-      photographers[i].tagline +
-      "</h4></div>";
-
-    htmlPhotographers +=
-      '<div class="card__price" role="text paragraph"><h5>' +
-      photographers[i].price +
-      "€/jour</h5></div>";
-
-    htmlPhotographers += '<div class="card__tags" role="link">';
+    htmlPhotographers += `<a class="lien" tabindex="0" onkeydown="enterPage(${photographers[i].id})" >
+    <article  class="card" role="image" ><img class="card__portrait" src="photos/PhotographersIDPhotos/${photographers[i].portrait}" alt="${photographers[i].name}"/>
+    <div class="card__name" role="link"><h2>${photographers[i].name}</h2></div>
+    <div class="card__country" role="text paragraph"><h3>${photographers[i].country}, ${photographers[i].city}</h3></div>
+    <div class="card__tagline" role="text paragraph"><h4>${photographers[i].tagline}</h4></div>
+    <div class="card__price" role="text paragraph"><h5>${photographers[i].price}€/jour</h5></div>
+    <div class="card__tags" role="link">`;
     for (let j in photographers[i].tags) {
-      htmlPhotographers +=
-        '<h6 class="labeltags">#' + photographers[i].tags[j] + "</h6>";
+      htmlPhotographers += `<h6 class="labeltags">#${photographers[i].tags[j]}</h6>`;
     }
-    htmlPhotographers += "</div>";
-
-    htmlPhotographers += "</article></a>";
+    htmlPhotographers += `</div></article></a>`;
   }
 
   // Affichage de l'ensemble des lignes en HTML
   elPhotographers.innerHTML = htmlPhotographers;
+}
+function enterPage(x) {
+  document.addEventListener("keydown", function (event) {
+    if (event.target.className == "lien") {
+      if (event.key === "Enter") {
+        window.location.href += `pages/photographerPage.html?id=${x}`;
+      }
+    }
+  });
 }
 
 function FilterByTypeEnter(photographers) {
