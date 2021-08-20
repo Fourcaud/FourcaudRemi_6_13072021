@@ -73,7 +73,6 @@
   .item-lightbox__photo,
   .item-lightbox__video {
     width: 1050px;
-
     height: 900px;
   }
   .fa-chevron-left,
@@ -140,6 +139,10 @@
   .item-lightbox__video {
     width: 1050px;
     height: 900px;
+  }
+  .item__photo,
+  .item__photo {
+    height: 300px;
   }
 }
 
@@ -284,6 +287,10 @@
   .item-lightbox__photo,
   .item-lightbox__video {
     width: 80%;
+  }
+  .item__photo,
+  .item__photo {
+    height: 300px;
   }
 }
 
@@ -453,5 +460,9 @@
   }
   .item-lightbox__flex {
     width: 100%;
+  }
+  .item__photo,
+  .item__photo {
+    height: 200px;
   }
 }

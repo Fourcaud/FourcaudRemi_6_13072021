@@ -28,14 +28,14 @@
   }
   &__photo {
     width: 350px;
-    height: 300px;
+
     border-radius: 5px;
     object-fit: cover;
     object-position: 50% 32%;
   }
   &__video {
     width: 350px;
-    height: 300px;
+
     border-radius: 5px;
     object-fit: cover;
     object-position: 50% 32%;
@@ -119,6 +119,7 @@
     background: #911c1c;
     border-radius: 5px;
     color: #ffffff;
+    border: none;
   }
   &__btn:hover {
     background-color: #db8876;
