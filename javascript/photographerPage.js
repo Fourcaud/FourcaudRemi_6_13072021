@@ -72,10 +72,10 @@ function fetchAllMedia(media) {
   mediaDuPhotographe = resultat;
   for (let y in resultat) {
     if (resultat[y].image) {
-      htmlMedia += `<article class="item"  role="image link" aria-label="media${y}" tabindex="0"><img onclick="lightboxModal(${y})" class="item__photo"  
+      htmlMedia += `<article class="item"  role="image link" aria-label="media${y}" ><img tabindex="0" onclick="lightboxModal(${y})" onkeydown="lightboxModalEnter(${y})" class="item__photo"  
       src="../photos/${resultat[y].photographerId}/${resultat[y].image}" alt="${resultat[y].title}"/>`;
     } else {
-      htmlMedia += `<article class="item" role="video link" aria-label="media${y}" tabindex="0"><video onclick="lightboxModal(${y})" autoplay class="item__video modal-btn-lightbox " > 
+      htmlMedia += `<article class="item" role="video link" aria-label="media${y}" ><video tabindex="0" onclick="lightboxModal(${y})" onkeydown="lightboxModalEnter(${y})" autoplay class="item__video modal-btn-lightbox " > 
       <source src="../photos/${resultat[y].photographerId}/${resultat[y].video}"  type="video/mp4" ></video>`;
     }
     htmlMedia +=
@@ -124,9 +124,9 @@ function affichageTri() {
   let htmlnavFiltre = "";
   htmlnavFiltre += `<button onclick="myFunctionTri();" class="dropbtn" aria-expanded="true" aria-controls="id_about_menu" tabindex="0">${modifyNameFiltre}<i class="fas fa-chevron-down"></i></button>`;
   htmlnavFiltre += `<div id="myDropdown" class="dropdown-content" id="id_about_menu" >`;
-  htmlnavFiltre += `<a onclick="filterByLike()"  tabindex="0">Popularité<i class="fas fa-chevron-up"></i></a>`;
-  htmlnavFiltre += `<div class="barFiltre"></div><a onclick="filterByName()" tabindex="0">Titre</a><div class="barFiltre"></div>`;
-  htmlnavFiltre += `<a onclick="filterByDate()" tabindex="0">Date</a>`;
+  htmlnavFiltre += `<a onclick="filterByLike()" onkeydown="filterEnter()" tabindex="0">Popularité<i class="fas fa-chevron-up"></i></a>`;
+  htmlnavFiltre += `<div class="barFiltre"></div><a onclick="filterByName()" onkeydown="filterEnter()" tabindex="0">Titre</a><div class="barFiltre"></div>`;
+  htmlnavFiltre += `<a onclick="filterByDate()"  onkeydown="filterEnter()" tabindex="0">Date</a>`;
   htmlnavFiltre += `</div>`;
   navFiltre.innerHTML = htmlnavFiltre;
 }
@@ -148,6 +148,23 @@ window.onclick = function (event) {
     }
   }
 };
+
+function filterEnter() {
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      // The Enter/Return key
+      if (event.target.text == "Popularité") {
+        filterByLike();
+      } else if (event.target.text == "Date") {
+        filterByDate();
+      } else if (event.target.text == "Titre") {
+        filterByName();
+      }
+    }
+  });
+}
+window.filterEnter = filterEnter;
+
 function filterByLike() {
   let filteredLike = [];
   filteredLike = mediaDuPhotographe;

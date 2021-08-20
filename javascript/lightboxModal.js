@@ -7,7 +7,19 @@ function lightbox(mediaDuPhotographe) {
   function closeModal() {
     modalbg.style.display = "none";
   }
-
+  function lightboxModalEnter(x) {
+    document.addEventListener("keydown", function (event) {
+      if (
+        event.target.localName == "img" ||
+        event.target.localName == "video"
+      ) {
+        if (event.key === "Enter") {
+          lightboxModal(x);
+        }
+      }
+    });
+  }
+  window.lightboxModalEnter = lightboxModalEnter;
   function lightboxModal(x) {
     const selectMedia = document.getElementById("modal-body-lightbox");
     const modalbg = document.querySelector(".bground-lightbox");
@@ -31,13 +43,16 @@ function lightbox(mediaDuPhotographe) {
   document.addEventListener("keydown", touchedown);
   function touchedown(event) {
     let mediaLive = document.getElementById("item-lightbox");
-    let x = mediaLive.getAttribute("data-id");
-    if (event.key === "ArrowLeft") {
-      changeMediaLeft(x);
-    } else if (event.key === "ArrowRight") {
-      changeMediaRight(x);
-    } else if (event.key === "Escape") {
-      closeModal();
+
+    if (mediaLive) {
+      let x = mediaLive.getAttribute("data-id");
+      if (event.key === "ArrowLeft") {
+        changeMediaLeft(x);
+      } else if (event.key === "ArrowRight") {
+        changeMediaRight(x);
+      } else if (event.key === "Escape") {
+        closeModal();
+      }
     }
   }
 

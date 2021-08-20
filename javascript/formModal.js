@@ -27,6 +27,15 @@ function formModal() {
     modalbg.style.display = "none";
   }
 
+  document.addEventListener("keydown", touchedown);
+  function touchedown(event) {
+    if (closeBtn) {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    }
+  }
+
   function isInvalid(element, message) {
     let target;
     if (NodeList.prototype.isPrototypeOf(element))

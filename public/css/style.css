@@ -525,6 +525,7 @@
   text-align: center;
   color: #911c1c;
   flex-wrap: wrap;
+  margin: 20px 0;
 }
 
 .check {
@@ -789,7 +790,7 @@ input:checked ~ label {
   text-align: left;
   color: #901c1c;
   align-self: self-start;
-  margin: 10px 0 10px 20%;
+  margin: 10px 0 10px 30%;
 }
 .item-lightbox__photo {
   margin-inline: auto;

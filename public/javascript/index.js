@@ -26,17 +26,17 @@ function DisplayFilters(photographers) {
 
   for (let i in uniqueTypes) {
     htmlTypes +=
-      '<li><input  type="checkbox" class="check" id="' +
+      '<div  tabindex="0"><input role="checkbox" type="checkbox" class="check" id="' +
       uniqueTypes[i] +
       '" name="header__tags" value="' +
       uniqueTypes[i] +
-      '"> <label class="labeltags ' +
+      '"> <label  class="labeltags ' +
       uniqueTypes[i] +
       '" for="' +
       uniqueTypes[i] +
       '"> #' +
       uniqueTypes[i] +
-      "</label></li>";
+      "</label></div>";
   }
   elTypes.innerHTML = htmlTypes;
 }
@@ -49,7 +49,7 @@ function FetchAll(photographers) {
 
   for (let i in photographers) {
     htmlPhotographers +=
-      '<a class="lien" href="pages/photographerPage.html?id=' +
+      '<a tabindex="0" class="lien" href="pages/photographerPage.html?id=' +
       photographers[i].id +
       '"><article class="card" role="image"><img class="card__portrait" src="photos/PhotographersIDPhotos/' +
       photographers[i].portrait +
@@ -92,13 +92,66 @@ function FetchAll(photographers) {
   // Affichage de l'ensemble des lignes en HTML
   elPhotographers.innerHTML = htmlPhotographers;
 }
-// Retourne les photographes filtrés
+
+function FilterByTypeEnter(photographers) {
+  document.addEventListener("keydown", function (event) {
+    if (event.target.parentNode.id == "header__tags") {
+      if (event.key === "Enter") {
+        // The Enter/Return key
+        if (event.target.children[0].checked) {
+          event.target.children[0].checked = false;
+        } else {
+          event.target.children[0].checked = true;
+        }
+      }
+    }
+    // Affiche les checkboxes
+
+    let checkboxes = document.querySelectorAll("input");
+    let arrType = [];
+    let filteredTags;
+
+    for (let checkbox of checkboxes) {
+      if (checkbox.checked) {
+        // Ajout dans le tableau de la valeur cochée
+        arrType.push(checkbox.value);
+      } else {
+        // Suppression dans le tableau
+        let removeItem = arrType.filter((e) => e !== checkbox.value);
+        arrType = removeItem;
+      }
+
+      if (arrType.length > 0) {
+        let i = arrType.length - 1;
+        // 1er choix
+        if (arrType.length == 1) {
+          filteredTags = photographers.filter(
+            (e) => e.tags.indexOf(arrType[0]) !== -1
+          );
+          // Autre(s) choix
+        } else {
+          filteredTags = filteredTags.filter(function (e) {
+            for (let j = 0; j < i; j++) {
+              return e.tags.indexOf(arrType[i]) !== -1;
+            }
+          });
+        }
+
+        FetchAll(filteredTags);
+      } else {
+        // Reset (aucune case cochée)
+        FetchAll(photographers);
+      }
+    }
+  });
+}
 function FilterByType(photographers) {
   // Affiche les checkboxes
 
   let checkboxes = document.querySelectorAll("input");
   let arrType = [];
   let filteredTags;
+
   for (let checkbox of checkboxes) {
     checkbox.addEventListener("click", function () {
       if (checkbox.checked) {
@@ -134,8 +187,10 @@ function FilterByType(photographers) {
     });
   }
 }
+
 fetchData((photographers) => {
   DisplayFilters(photographers);
   FetchAll(photographers);
   FilterByType(photographers);
+  FilterByTypeEnter(photographers);
 });
