@@ -48,7 +48,7 @@ function FetchAll(photographers) {
   let htmlPhotographers = "";
 
   for (let i in photographers) {
-    htmlPhotographers += `<a class="lien" tabindex="0" onkeydown="enterPage(${photographers[i].id})" >
+    htmlPhotographers += `<a class="lien" tabindex="0" onkeydown="enterPage(${photographers[i].id})" href="pages/photographerPage.html?id=${photographers[i].id}">
     <article  class="card" role="image" ><img class="card__portrait" src="photos/PhotographersIDPhotos/${photographers[i].portrait}" alt="${photographers[i].name}"/>
     <div class="card__name" role="link"><h2>${photographers[i].name}</h2></div>
     <div class="card__country" role="text paragraph"><h3>${photographers[i].country}, ${photographers[i].city}</h3></div>
