@@ -891,12 +891,14 @@ input:checked ~ label {
 }
 .item__photo {
   width: 350px;
+  height: 300px;
   border-radius: 5px;
   object-fit: cover;
   object-position: 50% 32%;
 }
 .item__video {
   width: 350px;
+  height: 300px;
   border-radius: 5px;
   object-fit: cover;
   object-position: 50% 32%;
